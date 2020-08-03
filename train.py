@@ -106,7 +106,7 @@ for epoch in range(args.num_epoch):
     optimizer.zero_grad()
     loss = log_lik = norm*F.binary_cross_entropy(A_pred.view(-1), adj_label.to_dense().view(-1), weight = weight_tensor)
     if args.model == 'VGAE':
-        kl_divergence = 0.5/ A_pred.size(0) * (1 + 2*model.logstd - model.mean**2 - torch.exp(model.logstd)).sum(1).mean()
+        kl_divergence = 0.5/ A_pred.size(0) * (1 + 2*model.logstd - model.mean**2 - torch.exp(model.logstd)**2).sum(1).mean()
         loss -= kl_divergence
 
     loss.backward()
