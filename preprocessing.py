@@ -86,8 +86,6 @@ def mask_test_edges(adj):
         if val_edges_false:
             if ismember([idx_j, idx_i], np.array(val_edges_false)):
                 continue
-            if ismember([idx_i, idx_j], np.array(val_edges_false)):
-                continue
         val_edges_false.append([idx_i, idx_j])
 
     assert ~ismember(test_edges_false, edges_all)
